@@ -1,0 +1,2 @@
+# Leetcode
+该仓库用于记录Leetcode上的经典题以及我的解题方法
