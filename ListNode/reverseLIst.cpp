@@ -70,7 +70,7 @@ public:
     //     return pre;
     // }
 
-    // 递归法
+    // 递归法, 调用函数要消耗栈空间
     ListNode* reverse(ListNode* pre, ListNode* cur){
         if (cur==nullptr) return pre;
         ListNode* tmp = cur->next;
