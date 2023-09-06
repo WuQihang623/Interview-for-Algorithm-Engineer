@@ -46,9 +46,11 @@ public:
                 slow_pointer = slow_pointer->next;
             }
         }
+        if (gap==(n+1)){
         ListNode* tmp = slow_pointer->next;
         slow_pointer->next = tmp->next;
         delete tmp;
+        }
         return _Dynamic->next;
     }
 
