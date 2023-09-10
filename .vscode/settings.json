@@ -57,6 +57,7 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "files.associations": {
     "new": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "unordered_map": "cpp"
   }
 }
