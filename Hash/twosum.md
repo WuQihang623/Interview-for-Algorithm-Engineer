@@ -1,6 +1,6 @@
 # 题目
 
-![Alt text](image-2.png)
+![Alt text](fig/image-2.png)
 
 **分析：** set是一个集合，里面放的元素只能是一个key，而本题要记录y的下标位置，所以set不能使用
 **此时要选择另一种数据结构map<key,value>**

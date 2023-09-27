@@ -1,5 +1,6 @@
 # include<iostream>
 # include<vector>
+# include<unordered_map>
 using namespace std;
 
 class Solution {
@@ -25,8 +26,25 @@ public:
     // }
     
     int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
-        // 首先可以使用unordered_set过滤掉重复的值
-        
+        // 使用underored_map保存num1+num2
+        unordered_map<int, int> num_add;
+        int count = 0;
+        for (int num1: nums1){
+            for (int num2: nums2){
+                int sum = num1 + num2;
+                auto it = num_add.find(sum);
+                if (it == num_add.end()) num_add.insert({sum, 1});
+                else num_add[sum] = num_add[sum] + 1;
+            }
+        }
+        for (int num3: nums3){
+            for (int num4: nums4){
+                int sum = 0 - (num3 + num4);
+                auto it = num_add.find(sum);
+                if (it != num_add.end()) count += it->second;
+            }
+        }
+        return count;
     }
 };
 

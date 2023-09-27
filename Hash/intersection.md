@@ -1,6 +1,6 @@
 # 两个数组的交集
 
-![Alt text](image-1.png)
+![Alt text](fig/image-1.png)
 
 暴力求解的时间复杂度是O(n^2),这道题没有输入的限制，无法使用数组来替代哈希表。
 
