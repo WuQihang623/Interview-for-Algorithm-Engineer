@@ -120,3 +120,95 @@ priority_queue<double> q;//储存double型数据
 priority_queue<string> q;//储存string型数据 
 priority_queue<结构体名> q;//储存结构体或者类 
 ```
+
+
+# 前K个高频元素topKFrequent.cpp
+![Alt text](fig/topKFrequent.png)
+## 优先队列Priority Queue
+它类似于队列（Queue），但具有额外的特性：它总是将具有最高优先级（最大值）的元素放在队列的前面，而不是按照插入顺序。
+```cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+int main() {
+    // 创建一个整数类型的优先级队列，默认是最大堆
+    priority_queue<int> pq;
+    // 向队列插入元素
+    pq.push(3);
+    pq.push(1);
+    pq.push(4);
+    pq.push(1);
+    pq.push(5);
+    // 访问并输出顶部元素
+    while(!pq.empty()){
+        cout << "顶部元素: " << pq.top() << endl;
+        pq.pop();
+    }
+    return 0;
+}
+// 输出元素 5，4，3，1，1
+```
+1. 默认情况下的比较方式：在默认情况下，优先级队列使用 < 操作符来确定元素之间的优先级。这意味着具有较大值的元素将具有更高的优先级。你可以通过提供自定义比较函数来改变比较方式。
+2. 插入元素：你可以使用 push() 成员函数向优先级队列中插入元素。插入操作会根据元素的优先级自动进行排序。
+3. 访问顶部元素：你可以使用 top() 成员函数来访问队列中具有最高优先级的元素（队首元素）。
+4. 删除顶部元素：要删除队列中的顶部元素，可以使用 pop() 成员函数。
+
+### 如何定义一个最小堆
+```C++
+#include <iostream>
+#include <queue>
+// 自定义比较函数，创建最小堆
+struct Compare {
+    bool operator() (int a, int b) {
+        return a > b;
+    }
+};
+int main() {
+    // 创建一个整数类型的优先级队列，使用自定义比较函数
+    std::priority_queue<int, std::vector<int>, Compare> pq;
+    // 向队列插入元素
+    pq.push(3);
+    pq.push(1);
+    pq.push(4);
+    pq.push(1);
+    pq.push(5);
+    // 访问并输出顶部元素
+    std::cout << "顶部元素: " << pq.top() << std::endl;
+    return 0;
+}
+```
+**为什么要在proiority_queue的模板类中添加vector？**
+1. 因为 std::priority_queue 的第二个模板参数用于指定底层容器的类型。
+2. std::priority_queue 是通过维护一个堆来实现的，而堆是一种特殊的树形数据结构，通常使用数组（或类似的容器，比如 std::vector）来表示。在优先队列的情况下，底层容器存储了堆的节点，而 std::priority_queue 类提供了一组接口来维护这个堆结构，以确保队列中具有最高优先级的元素位于队首。
+3. 因此，当你创建一个 std::priority_queue<int, std::vector<int>, Compare> 时，你告诉编译器使用 std::vector<int> 作为底层容器来存储元素，同时使用自定义的 Compare 比较函数来确定元素之间的优先级关系，从而实现最小堆的行为。
+
+#### 或者
+使用自定义的元素类型，并在自定义元素类型中重载 < 操作符以定义元素之间的比较方式。
+```C++
+#include <iostream>
+#include <queue>
+
+// 自定义元素类型
+struct MyElement {
+    int value;
+    MyElement(int val) : value(val) {}
+    // 重载 < 操作符，定义元素之间的比较方式
+    bool operator< (const MyElement& other) const {
+        return value > other.value; // 创建最小堆
+    }
+};
+int main() {
+    // 创建一个使用自定义元素类型的优先级队列
+    std::priority_queue<MyElement> pq;
+    // 向队列插入元素
+    pq.push(MyElement(3));
+    pq.push(MyElement(1));
+    pq.push(MyElement(4));
+    pq.push(MyElement(1));
+    pq.push(MyElement(5));
+    // 访问并输出顶部元素
+    std::cout << "顶部元素: " << pq.top().value << std::endl;
+    return 0;
+}
+
+```
