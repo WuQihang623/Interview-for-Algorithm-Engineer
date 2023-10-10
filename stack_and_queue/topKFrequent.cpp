@@ -32,7 +32,9 @@ public:
         public:
             My_Element(pair<int, int> x): a(x) {}
             // 创建最小堆
-            bool operator< (const My_Element& b) const{
+            bool operator< (const My_Element& b) const{  // 第二个const：这个const出现在函数声明的末尾，
+            //表示该成员函数是一个常量成员函数，并且不会修改调用它的对象的状态。这个const是函数签名的一部分，
+            // 它告诉编译器该函数在调用时可以用于常量对象。如果您尝试在常量对象上调用非常量成员函数，编译器会发出错误。
                 return this->second() > b.second();
             }
             int first() const {

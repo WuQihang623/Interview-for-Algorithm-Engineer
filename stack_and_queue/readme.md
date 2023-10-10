@@ -212,3 +212,10 @@ int main() {
 }
 
 ```
+
+# 接雨水trap.cpp
+![Alt text](fig/trap.png)
+## 思路
+首先找到一个height[i]>height[i+1]的地方，此处可能可以接到雨水；
+其次寻找一个height[x]>height[i+1]的地方，尽量往后找，知道找到一个大于height[i]的位置为止
+这个区间能够接到雨水
