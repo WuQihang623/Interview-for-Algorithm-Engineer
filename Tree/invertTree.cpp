@@ -20,9 +20,20 @@ struct TreeNode {
 class Solution {
 public:
     void inver(TreeNode* node){
-        TreeNode* node_left = node->left;
-        node->left = node->right;
-        node->right = node_left;
+        if (node == nullptr) return;
+        if (node->left && node->right){
+            TreeNode* node_l = node->left;
+            node->left = node->right;
+            node->right = node_l;
+        }
+        else if (node->left){
+            node->right = node->left;
+            node->left = nullptr;
+        }
+        else if (node->right){
+            node->left = node->right;
+            node->right = nullptr;
+        }
         if (node->left) inver(node->left);
         if (node->right) inver(node->right);
     }

@@ -39,3 +39,51 @@ struct TreeNode{
 # 二叉树的前序遍历
 给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
 使用栈来进行二叉树的遍历。
+
+# 平衡二叉树的判断
+## 方法一：自顶向下的递归
+有了计算节点高度的函数，即可判断二叉树是否平衡。具体做法类似于二叉树的前序遍历，即对于当前遍历到的节点，首先计算左右子树的高度，如果左右子树的高度差是否不超过 1，再分别递归地遍历左右子节点，并判断左子树和右子树是否平衡。这是一个自顶向下的递归的过程。
+```cpp
+class Solution {
+public:
+    int height(TreeNode* root) {
+        if (root == NULL) {
+            return 0;
+        } else {
+            return max(height(root->left), height(root->right)) + 1;
+        }
+    }
+
+    bool isBalanced(TreeNode* root) {
+        if (root == NULL) {
+            return true;
+        } else {
+            return abs(height(root->left) - height(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right);
+        }
+    }
+};
+```
+## 自底向上的递归
+自底向上递归的做法类似于后序遍历，对于当前遍历到的节点，先递归地判断其左右子树是否平衡，再判断以当前节点为根的子树是否平衡。如果一棵子树是平衡的，则返回其高度（高度一定是非负整数），否则返回 −1。如果存在一棵子树不平衡，则整个二叉树一定不平衡。
+```cpp
+class Solution {
+public:
+    int height(TreeNode* root) {
+        if (root == NULL) {
+            return 0;
+        }
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+        if (leftHeight == -1 || rightHeight == -1 || abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        } else {
+            return max(leftHeight, rightHeight) + 1;
+        }
+    }
+
+    bool isBalanced(TreeNode* root) {
+        return height(root) >= 0;
+    }
+};
+
+```

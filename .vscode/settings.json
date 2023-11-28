@@ -59,7 +59,8 @@
     "new": "cpp",
     "iostream": "cpp",
     "unordered_map": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "stack": "cpp"
   },
   "C_Cpp_Runner.msvcSecureNoWarnings": false
 }
