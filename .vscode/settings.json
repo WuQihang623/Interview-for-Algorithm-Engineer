@@ -61,7 +61,9 @@
     "unordered_map": "cpp",
     "vector": "cpp",
     "stack": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "unordered_set": "cpp",
+    "set": "cpp"
   },
   "C_Cpp_Runner.msvcSecureNoWarnings": false
 }
