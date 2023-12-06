@@ -63,7 +63,8 @@
     "stack": "cpp",
     "algorithm": "cpp",
     "unordered_set": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "map": "cpp"
   },
   "C_Cpp_Runner.msvcSecureNoWarnings": false
 }
