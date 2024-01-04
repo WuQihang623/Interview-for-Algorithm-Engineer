@@ -15,7 +15,7 @@ public:
         for (int i = startIdx; i < nums.size(); i++){
             res.push_back(nums[i]);
             ans.push_back(res);
-            backward(startIdx+1, nums);
+            backward(i+1, nums);
             res.pop_back();
         }
     }
