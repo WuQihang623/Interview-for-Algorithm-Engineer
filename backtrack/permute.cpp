@@ -8,35 +8,53 @@ using namespace std;
 class Solution {
 private:
     vector<int> path;
+    unordered_set<int> uset;
     vector<vector<int>> ans;
 public:
-    void backtrack(int startIdx, const vector<int>& nums){
-        if (!path.empty()) {
-            if (path.size()==nums.size()){
-                ans.push_back(path);
-                return;
-            }
+    void backtrack(const vector<int>& nums){
+        if (path.size()==nums.size()) {
+            ans.push_back(path);
+            return;
         }
-        int uset[21] = {0};
         for (int i=0; i<nums.size(); i++) {
-            bool flag = false;
-            if (uset[nums[i]+10]!=0) {
+            if (uset.find(nums[i])==uset.end()){
                 path.push_back(nums[i]);
-                uset[nums[i]+10] += 1;
-                flag = true;
+                uset.insert(nums[i]);
+                backtrack(nums);
+                path.pop_back();
+                uset.erase(nums[i]);
             }
-            backtrack(i+1, nums);
-            if (flag) path.pop_back();
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
-        backtrack(0, nums);
+        backtrack(nums);
         return ans;
     }
 };
 
-int main(){
-    vector<int> nums = {1, 2, 3};
-    Solution s;
-    s.permute(nums);
-}
+class Solution {
+private:
+    vector<int> path;
+    vector<vector<int>> ans;
+public:
+    void backtrack(const vector<int>& nums, vector<int>& used) {
+        if (nums.size()==path.size()){
+            ans.push_back(path);
+            return;
+        }
+        for (int i=0; i<nums.size(); i++) {
+            if (used[i]==0) {
+                path.push_back(nums[i]);
+                used[i] = 1;
+                backtrack(nums, used);
+                path.pop_back();
+                used[i] = 0;
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<int> used (nums.size(), 0);
+        backtrack(nums, used);
+        return ans;
+    }
+};
