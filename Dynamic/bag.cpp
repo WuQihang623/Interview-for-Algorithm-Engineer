@@ -30,9 +30,29 @@ int solve() {
     return dp[N-1][bagweight];
 }
 
+
+int solve1() {
+    vector<int> weights(N, 0);
+    vector<int> values(N, 0);
+    for (int i=0; i<N; i++) {
+        cin >> weights[i];
+    }
+    for (int i=0; i<N; i++) {
+        cin >> values[i];
+    }
+
+    vector<int> dp(bagweight+1, 0);
+    for (int i=0; i<N; i++) {
+        for (int j=bagweight; j>=weights[i]; j--) {
+            dp[j] = max(dp[j], dp[j-weights[i]] + values[i]);
+        }
+    }
+    return dp[bagweight];
+}
+
 int main() {
     cin >> N >> bagweight;
-    int value = solve();
+    int value = solve1();
     cout << value;
     return 0;
 }
