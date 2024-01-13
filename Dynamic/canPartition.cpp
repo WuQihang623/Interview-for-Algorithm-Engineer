@@ -1,6 +1,8 @@
 # include<vector>
 using namespace std;
 
+// 分割子集问题
+
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
