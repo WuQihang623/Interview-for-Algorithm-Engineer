@@ -24,9 +24,6 @@ for (int i=0; i<nums.size(); i++) {
 }
 ```
 
-# 全排列问题的顺序
-```cpp
-for (int j=0; j<=bagweight; j++) {
-    for (int i=0; i<=nums.size(); i++)
-}
-```
+**如果求组合数就是外层for循环遍历物品，内层for遍历背包。**
+
+**如果求排列数就是外层for遍历背包，内层for循环遍历物品。**
